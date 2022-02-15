@@ -17,9 +17,10 @@ exports.signup=(req,res)=>{
         if(err){
             return res.status(500).send({message:err})
         }
-        if(req.body.roles){
+        if(req.body.roles=="admin"||req.body.roles=="moderator"){
             Role.find(
                 {name:{$in:req.body.roles}},(err,roles)=>{
+                    //{name:"admin"},(err,roles)=>{ 
                     if(err){
                         return res.status(500).send({message:err})
                     }
@@ -29,14 +30,32 @@ exports.signup=(req,res)=>{
                         if(err){
                             return res.status(500).send({message:err})
                         }
-                        res.send({message:"User Admin/Moderator has been registered successfully!"})
+                        res.send({message:` ${req.body.roles} has been registered successfully!`})
                     })
                 }
             )
         }
+        // else if(req.body.roles=="admin" && req.body.roles=="moderator"){
+        //     Role.find(
+        //         {name:{$in:req.body.roles}},(err,roles)=>{
+        //             //{name:"admin"},(err,roles)=>{ 
+        //             if(err){
+        //                 return res.status(500).send({message:err})
+        //             }
+        //             userdetails.roles=roles.map(role=>role._id)
+        //             console.log(userdetails)
+        //             userdetails.save(err=>{
+        //                 if(err){
+        //                     return res.status(500).send({message:err})
+        //                 }
+        //                 res.send({message:"Admin and Moderator has been registered successfully!"})
+        //             })
+        //         }
+        //     )
+        // }
         else{
             Role.findOne(
-                {name:user},(err,role)=>{
+                {name:"user"},(err,role)=>{
                     if(err){
                         return res.status(500).send({message:err})
                     }
