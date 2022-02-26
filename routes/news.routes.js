@@ -1,10 +1,10 @@
 module.exports=app=>{
 
-    const Add=require('../controllers/news/add.controller')
-    const FindAll=require('../controllers/news/findAll.controller')
-    const FindOne=require('../controllers/news/findOne.controller')
-    const Delete=require('../controllers/news/delete.controller')
-    const Update=require('../controllers/news/update.controller')
+    const Add=require('../Controllers/news/add.controller');
+    const FindAll=require('../Controllers/news/findAll.controller');
+    const FindOne=require('../Controllers/news/findOne.controller');
+    const Delete=require('../Controllers/news/delete.controller');
+    const Update=require('../Controllers/news/update.controller');
 
     var router=require('express').Router()
 
